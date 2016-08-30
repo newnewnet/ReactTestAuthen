@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import * as types  from '../constants/ActionType'
 import { routerReducer } from 'react-router-redux'
+import cookie from 'react-cookie'
 
 function auth(state = [], action) {
   switch (action.type) {
     case types.RECEIVE_POSTS_LOGIN:
+      cookie.save('userId', action.payload.token, { path: '/' });
       return Object.assign({}, state, {
           'isAuthenticated': true,
           'token': action.payload.token

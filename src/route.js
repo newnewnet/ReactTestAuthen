@@ -11,7 +11,7 @@ export default (store, history) => {
   return (
    <Router history={syncHistoryWithStore(history, store)}>
      <Route path='/' component={App}>
-      <IndexRoute component={Login(store)} />
+      <IndexRoute component={Login} />
       <route path='user' component={requireAuthentication(User, store)} />
 
      </Route>

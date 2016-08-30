@@ -29,5 +29,10 @@ module.exports = {
         include: __dirname
       }
     ]
+  },
+  devServer: {
+    hot: true,
+    inline: true,
+    historyApiFallback: true
   }
 }
