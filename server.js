@@ -20,10 +20,14 @@ app.use(webpackHotMiddleware(compiler))
 
 
 
-app.get('*', function(req, res){
-  res.sendfile('./src/index.html');
-});
 
+app.get('/api/info', function(req, res){
+  res.status(200).send({
+    data:{
+      name: 'Nuttapol Teangiam'
+    }
+  })
+});
 
 app.post('/api/login', function(req, res){
   res.status(200).send({
@@ -32,6 +36,11 @@ app.post('/api/login', function(req, res){
     }
   })
 });
+
+app.get('*', function(req, res){
+  res.sendfile('./src/index.html');
+});
+
 
 app.listen(port, function(error) {
   if (error) {

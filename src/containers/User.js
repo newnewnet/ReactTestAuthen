@@ -1,7 +1,15 @@
-import React, {component} from 'react';
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+import Users from '../components/Users';
+import * as AuthenActions from '../actions'
 
-export default () => (
-  <div className="tab-content">
-          xxx
-  </div>
-)
+function mapStateToProps(state) {
+  return {
+    name: state.info.name
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  {loadInfo: AuthenActions.getInfo}
+)(Users);

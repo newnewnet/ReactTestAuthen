@@ -24,6 +24,15 @@ export const postLogin = (objLogin) => ({
     }
 });
 
+
+export const getInfo = () =>({
+  [CALL_API]: {
+    types: [ types.REQUEST_GET_INFO, types.RECEIVE_GET_INFO, types.FAIL_GET_INFO],
+    endpoint: '/api/info',
+    method: 'GET'
+  }
+})
+
 // export const postLogin = (objLogin) => (
 //   (dispatch) =>
 //     dispatch({

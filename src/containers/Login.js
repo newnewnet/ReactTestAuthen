@@ -21,7 +21,6 @@ class Login extends Component {
   }
 
   render(){
-    console.log(this.props.auth.isAuthenticated)
     const {auth, actions} = this.props;
     return(
       <div>
@@ -34,9 +33,9 @@ class Login extends Component {
 }
 
 function mapStateToProps(state, dispatch) {
+  console.log(state)
   return {
     auth: state.auth
-
   }
 }
 
