@@ -5,18 +5,18 @@ import TabBox from '../components/TabBox'
 import * as AuthenActions from '../actions'
 import {push} from 'react-router-redux';
 
-// export default (store) =>  {
 class Login extends Component {
   componentDidMount(){
-
-    if(this.props.auth.isAuthenticated){
-      this.props.dispatch(push('/user'))
-    }
+    this.checkAuth(this.props.auth.isAuthenticated);
   }
 
   componentWillReceiveProps (nextProps) {
-    if(nextProps.auth.isAuthenticated){
-        this.props.dispatch(push('/user'))
+    this.checkAuth(nextProps.auth.isAuthenticated);
+  }
+
+  checkAuth(isAuthenticated){
+    if(isAuthenticated){
+      this.props.redirectTo('/user');
     }
   }
 
@@ -29,11 +29,9 @@ class Login extends Component {
 
     )
   }
-
 }
 
 function mapStateToProps(state, dispatch) {
-  console.log(state)
   return {
     auth: state.auth
   }
@@ -44,11 +42,11 @@ function mapDispatchToProps(dispatch) {
     actions: function(){
       dispatch(AuthenActions.postLogin())
     },
-    dispatch: dispatch
+    redirectTo: function(url){
+      dispatch(push(url));
+    }
   }
 }
-
-
 
 export default connect(
   mapStateToProps,
